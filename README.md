@@ -28,7 +28,7 @@ Applying CoCoEdit to Qwen-Image-Edit and FLUX-Kontext, we achieve not only compe
 ### TODO 
 - [ ] Release the pretrained model.
 - [ ] Update the code for inference.
-- [ ] Release the InsViE-1M dataset.
+- [ ] Release the dataset.
 - [ ] Update the code for training.
 
 

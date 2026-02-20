@@ -1,6 +1,6 @@
 # CoCoEdit: Content-Consistent Image Editing via Region Regularized Reinforcement Learning
 
-[![arXiv](https://img.shields.io/badge/arXiv-InsViE-b31b1b.svg)](https://github.com/langmanbusi/CoCoEdit) 
+[![arXiv](https://img.shields.io/badge/arXiv-CoCoEdit-b31b1b.svg)](https://arxiv.org/abs/2602.14068) 
 ![Pytorch](https://img.shields.io/badge/PyTorch->=2.4.0-Red?logo=pytorch)
 [![Dataset](https://img.shields.io/badge/HuggingFace-Dataset-orange)](https://github.com/langmanbusi/CoCoEdit)
 [![Model](https://img.shields.io/badge/HuggingFace-Model-orange)](https://github.com/langmanbusi/CoCoEdit)

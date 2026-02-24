@@ -3,7 +3,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-CoCoEdit-b31b1b.svg)](https://arxiv.org/abs/2602.14068) 
 [![Dataset](https://img.shields.io/badge/HuggingFace-Dataset-orange)](https://github.com/langmanbusi/CoCoEdit)
 [![Model](https://img.shields.io/badge/HuggingFace-Model-orange)](https://github.com/langmanbusi/CoCoEdit)
-[![Project](https://img.shields.io/badge/Project-Page-blue)](https://github.com/langmanbusi/CoCoEdit)
+[![Project](https://img.shields.io/badge/Project-Page-blue)](https://langmanbusi.github.io/CoCo-Edit/)
 
 Yuhui Wu<sup>1,2</sup>, Chenxi Xie<sup>1,2</sup>, Ruibin Li<sup>1</sup>, Liyi Chen<sup>1</sup>, Qiaosi Yi<sup>1,2</sup>, Lei Zhang<sup>1,2</sup>*
 

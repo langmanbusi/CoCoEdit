@@ -1,9 +1,10 @@
 # CoCoEdit: Content-Consistent Image Editing via Region Regularized Reinforcement Learning
 
 [![arXiv](https://img.shields.io/badge/arXiv-CoCoEdit-b31b1b.svg)](https://arxiv.org/abs/2602.14068) 
-[![Dataset](https://img.shields.io/badge/HuggingFace-Dataset-orange)](https://github.com/langmanbusi/CoCoEdit)
-[![Model](https://img.shields.io/badge/HuggingFace-Model-orange)](https://github.com/langmanbusi/CoCoEdit)
 [![Project](https://img.shields.io/badge/Project-Page-blue)](https://langmanbusi.github.io/CoCo-Edit/)
+[![Dataset](https://img.shields.io/badge/HuggingFace-Dataset-orange)](https://huggingface.co/datasets/wyh6666/CoCoEdit-40K)
+[![Model](https://img.shields.io/badge/HuggingFace-Model-orange)](https://huggingface.co/wyh6666/CoCoEdit)
+
 
 Yuhui Wu<sup>1,2</sup>, Chenxi Xie<sup>1,2</sup>, Ruibin Li<sup>1</sup>, Liyi Chen<sup>1</sup>, Qiaosi Yi<sup>1,2</sup>, Lei Zhang<sup>1,2</sup>*
 
@@ -21,16 +22,12 @@ For evaluation, we annotate editing masks for GEdit-Bench and ImgEdit-Bench, int
 Applying CoCoEdit to Qwen-Image-Edit and FLUX-Kontext, we achieve not only competitive editing scores with state-of-the-art models, but also significantly better content consistency, measured by PSNR/SSIM metrics and human subjective ratings.
 </details>
 
-### Updates
-- 
-
-
 ### TODO 
-- [ ] Release the pretrained model.
-- [ ] Update the code for inference.
-- [ ] Release the dataset.
+- [x] Project page.
+- [x] Release arXiv version.
+- [x] Release the pretrained model.
+- [x] Release the dataset.
 - [ ] Update the code for training.
-
 
 ## Citation
 

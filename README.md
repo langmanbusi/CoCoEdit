@@ -1,3 +1,5 @@
+<div align="center">
+      
 # CoCoEdit: Content-Consistent Image Editing via Region Regularized Reinforcement Learning
 
 [![arXiv](https://img.shields.io/badge/arXiv-CoCoEdit-b31b1b.svg)](https://arxiv.org/abs/2602.14068) 
@@ -12,6 +14,14 @@ Yuhui Wu<sup>1,2</sup>, Chenxi Xie<sup>1,2</sup>, Ruibin Li<sup>1</sup>, Liyi Ch
 
 <sup>1</sup>The Hong Kong Polytechnic University, <sup>2</sup>OPPO Research Institute
 
+> *Curate CoCoEdit-40K for content-consistent training, alleviate the over-edit issue of open-source models through RL, and extend existing benchmarks for consistency evaluation.*
+</div>
+
+
+<div align="center">
+    <img src="images/teaser.png" width="900">
+</div>
+
 ### Abstract
 
 <details><summary>Click for the full text</summary>
@@ -23,11 +33,83 @@ Applying CoCoEdit to Qwen-Image-Edit and FLUX-Kontext, we achieve not only compe
 </details>
 
 ### TODO 
-- [x] Project page.
+- [x] Project page. 
 - [x] Release arXiv version.
 - [x] Release the pretrained model.
 - [x] Release the dataset.
 - [ ] Update the code for training.
+
+
+## Inference
+
+### Quick start
+Install the latest version of diffusers
+```python
+pip install git+https://github.com/huggingface/diffusers
+```
+
+Built on the official codes of [Qwen-Image-Edit](https://huggingface.co/Qwen/Qwen-Image-Edit-2509), you can run the following script to inference with our CoCoEdit LoRA [weights](https://huggingface.co/wyh6666/CoCoEdit). 
+
+``` python
+import os
+import torch
+from PIL import Image
+from diffusers import QwenImageEditPlusPipeline
+
+pipeline = QwenImageEditPlusPipeline.from_pretrained("Qwen/Qwen-Image-Edit-2509", torch_dtype=torch.bfloat16)
+print("pipeline loaded")
+
+pipeline.to('cuda')
+
+lora_path = 'qwen-cocoedit-lora/lora'
+pipeline.load_lora_weights(
+    lora_path,
+    weight_name="adapter_model_converted.safetensors",
+    adapter_name="lora",
+)
+pipeline.set_adapters(["lora"], adapter_weights=[1])
+print("Lora loaded")
+
+pipeline.set_progress_bar_config(disable=None)
+image = Image.open("input.png")
+prompt = "your prompt here."
+inputs = {
+    "image": image,
+    "prompt": prompt,
+    "generator": torch.manual_seed(0),
+    "true_cfg_scale": 4.0,
+    "negative_prompt": " ",
+    "num_inference_steps": 40,
+    "guidance_scale": 1.0,
+    "num_images_per_prompt": 1,
+}
+with torch.inference_mode():
+    output = pipeline(**inputs)
+    output_image = output.images[0]
+    output_image.save("output.png")
+    print("image saved at", os.path.abspath("output.png"))
+
+```
+
+### Benchmark inference
+
+You can also conduct benchmark inference on [ImgEdit-Bench](https://github.com/PKU-YuanGroup/ImgEdit/blob/main/Benchmark/Basic/basic_bench_readme.md) and [GEdit-Bench](https://huggingface.co/datasets/stepfun-ai/GEdit-Bench) using ```test_gedit-bench.py``` and ```test_imgedit-bench.py```.
+
+## CoCoEdit-40K
+
+You can download our CoCoEdit-40K dataset on the huggingface [link](https://huggingface.co/datasets/wyh6666/CoCoEdit-40K) shown above. Due to the limited uploading speed, we split the zips as shown below. You could run ```cat images_part1.zip_* > images_part1.zip``` to restore each zip.
+
+```
+CoCoEdit-40K/
+    - metadata.jsonl
+    - images_part1.zip_aa
+    - images_part1.zip_ab
+    - images_part1.zip_ac
+    - images_part2.zip_aa
+    - ...
+    - masks_part1.zip
+    - ...
+```
 
 ## Citation
 
@@ -35,8 +117,9 @@ If you find this work helpful, please consider citing:
 
 ```
 @article{wu2026cocoedit,
-      title={CoCoEdit: Content-Consistent Image Editing via Region Regularized Reinforcement Learning}, 
-      author={Yuhui Wu and Chenxi Xie and Ruibin Li and Liyi Chen and Qiaosi Yi and Lei Zhang},
-      year={2026},
+  title={CoCoEdit: Content-Consistent Image Editing via Region Regularized Reinforcement Learning},
+  author={Wu, Yuhui and Xie, Chenxi and Li, Ruibin and Chen, Liyi and Yi, Qiaosi and Zhang, Lei},
+  journal={arXiv preprint arXiv:2602.14068},
+  year={2026}
 }
 ```

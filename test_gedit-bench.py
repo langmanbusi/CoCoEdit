@@ -75,10 +75,11 @@ def main():
     with open(json_path, "r") as f:
         data = json.load(f)
 
-    for key, sample in tqdm(data.items()):
-        ref_image_path = "ImgEdit/bench-data/" + sample["id"]
-        prompt = sample["prompt"]
-        save_path = os.path.join(output_root, f'{key}.png')
+    for sample in tqdm(data.values()):
+        ref_image_path = sample["ref_image_path"]
+        prompt = sample["caption"]
+        rel_path = ref_image_path.split("gedit-bench/")[-1]
+        save_path = os.path.join(output_root, rel_path)
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         image = Image.open(ref_image_path).convert("RGB")
 

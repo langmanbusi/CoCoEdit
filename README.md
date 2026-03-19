@@ -32,12 +32,12 @@ For evaluation, we annotate editing masks for GEdit-Bench and ImgEdit-Bench, int
 Applying CoCoEdit to Qwen-Image-Edit and FLUX-Kontext, we achieve not only competitive editing scores with state-of-the-art models, but also significantly better content consistency, measured by PSNR/SSIM metrics and human subjective ratings.
 </details>
 
-### TODO 
-- [x] Project page. 
-- [x] Release arXiv version.
-- [x] Release the pretrained model.
-- [x] Release the dataset.
-- [ ] Update the code for training.
+### Update 
+- **2026.3.19**: The mask annotations of GEdit-Bench and ImgEdit-Bench are released on [HF](https://huggingface.co/datasets/wyh6666/GEditBench_ImgEditBench_with_mask).
+- **2026.3.11**: The CoCoEdit-40K dataset is released on [HF](https://huggingface.co/datasets/wyh6666/CoCoEdit-40K).
+- **2026.3.8**: The pretrained LoRA of Qwen-Image-Edit-2509 is released on [HF](https://huggingface.co/wyh6666/CoCoEdit).
+- **2026.2.22** The project [page](https://langmanbusi.github.io/CoCo-Edit/) is released.
+- **2026.2.15**: Paper is released on [ArXiv](https://arxiv.org/abs/2602.14068).
 
 
 ## Inference
@@ -110,6 +110,81 @@ CoCoEdit-40K/
     - masks_part1.zip
     - ...
 ```
+
+## Guideline of GEdit-Bench and ImgEdit-Bench with our mask annotation
+
+This benchmark is bulit on [GEdit-Bench](https://huggingface.co/datasets/stepfun-ai/GEdit-Bench) and [ImgEdit-Bench](https://github.com/PKU-YuanGroup/ImgEdit/tree/main/Benchmark), more information can be found in their homepages.
+
+### Installation
+
+This evaluation does not require complex packages. If your existing environments miss some, please install them.
+```bash
+pip install torch torchvision
+pip install numpy Pillow scikit-image tqdm
+```
+
+### Structure of the Benchmarks
+
+**GEdit-Bench:**  
+The samples of different editing types are under the ```fullset``` folder. Each sample of the original benchmark has a corresponding mask. The structure of the files are shown below.
+
+```
+geditbench/
+    - fullset/
+        - color_alter/
+            - en/
+                - 0d6038e1736440c2fb8384b4bf495e13_mask.png
+                - 0d6038e1736440c2fb8384b4bf495e13.png
+                - ...
+        - ...
+    - metafile_geditbench.json
+    - run_psnr_score.py
+```
+
+**ImgEdit-Bench:**   
+The samples of different editing types are under the ```singleturn``` folder. Each sample of the original benchmark has a corresponding mask. The structure of the files are shown below.
+
+```
+imgedit/
+    - singleturn/
+        - animal/
+            - 000000265_mask.png
+            - 000000265.png
+            - ...
+        - ...
+    - metafile_imgeditbench.json
+    - run_psnr_score.py
+```
+
+### Usage
+
+First you should generate your own results of these benchmarks. To directly use our ```run_psnr_score.py```, make sure your results are saved follow the correct structure.
+
+For GEdit-Bench, the results should be saved as
+```
+result_model_0/
+    - fullset/
+        - color_alter/
+            - en/
+                - 0d6038e1736440c2fb8384b4bf495e13.png
+                - ...
+        - ...
+```
+
+For ImgEdit-Bench, the results should be saved as
+```
+result_model_0/
+    - 22.png
+    - 23.png
+    - ...
+```
+
+Then run the script to obtain the PSNR and SSIM.
+```python
+python run_psnr_score.py --results_dir result_model_0
+```
+
+You will find a ```psnr_ssim.json``` under ```results_score/result_model_0```. All the values are saved and the mean value is at the bottom of the json file. 
 
 ## Citation
 

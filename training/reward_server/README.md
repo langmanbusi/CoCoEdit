@@ -5,13 +5,14 @@ This repository contains a Flask + Ray reward inference service, implemented as 
 ## Acknowledgements
 
 This implementation is based on the EditScore framework from:
-
+```
 @article{luo2025editscore,
   title={EditScore: Unlocking Online RL for Image Editing via High-Fidelity Reward Modeling},
   author={Xin Luo and Jiahao Wang and Chenyuan Wu and Shitao Xiao and Xiyan Jiang and Defu Lian and Jiajun Zhang and Dong Liu and Zheng Liu},
   journal={arXiv preprint arXiv:2509.23909},
   year={2025}
 }
+```
 
 We thank the authors for their research and the foundation it provides for reward modeling in image editing.
 

@@ -33,6 +33,7 @@ Applying CoCoEdit to Qwen-Image-Edit and FLUX-Kontext, we achieve not only compe
 </details>
 
 ### Update 
+- **2026.6.2**: Training code has been updated and the documentation now points to the `training` folder.
 - **2026.3.19**: The mask annotations of GEdit-Bench and ImgEdit-Bench are released on [HF](https://huggingface.co/datasets/wyh6666/GEditBench_ImgEditBench_with_mask).
 - **2026.3.11**: The CoCoEdit-40K dataset is released on [HF](https://huggingface.co/datasets/wyh6666/CoCoEdit-40K).
 - **2026.3.8**: The pretrained LoRA of Qwen-Image-Edit-2509 is released on [HF](https://huggingface.co/wyh6666/CoCoEdit).
@@ -94,6 +95,33 @@ with torch.inference_mode():
 ### Benchmark inference
 
 You can also conduct benchmark inference on [ImgEdit-Bench](https://github.com/PKU-YuanGroup/ImgEdit/blob/main/Benchmark/Basic/basic_bench_readme.md) and [GEdit-Bench](https://huggingface.co/datasets/stepfun-ai/GEdit-Bench) using ```test_gedit-bench.py``` and ```test_imgedit-bench.py```.
+
+## Training
+
+The training code is located in the `training` folder. For environment setup, please refer to the Edit-R1 repository:
+
+https://github.com/PKU-YuanGroup/Edit-R1
+
+The main training entry points are in `training/examples`:
+
+- `train_kontext.sh`: launch distributed training for Kontext with `config/kontext_nft.py:kontext_qwen32_pixel_reward_reg`
+- `train_qwen_image_edit.sh`: launch distributed training for Qwen Image Edit with `config/qwen_image_edit_nft.py:qwenedit_qwen32_pixel_reward_reg`
+
+Run one of these scripts directly from the `training` folder, for example:
+
+```bash
+cd training
+bash examples/train_kontext.sh
+```
+
+or
+
+```bash
+cd training
+bash examples/train_qwen_image_edit.sh
+```
+
+Both scripts use `torchrun --nproc_per_node=8` and expect distributed training environment variables such as `WORLD_SIZE`, `MASTER_ADDR`, `MASTER_PORT`, and `RANK` to be configured by your cluster/job launcher.
 
 ## CoCoEdit-40K
 

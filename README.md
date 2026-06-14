@@ -7,6 +7,7 @@
 [![Dataset](https://img.shields.io/badge/HuggingFace-Dataset-orange)](https://huggingface.co/datasets/wyh6666/CoCoEdit-40K)
 [![Model](https://img.shields.io/badge/HuggingFace-Model-orange)](https://huggingface.co/wyh6666/CoCoEdit)
 
+_Our paper has been accepted in **ICML 2026**_
 
 Yuhui Wu<sup>1,2</sup>, Chenxi Xie<sup>1,2</sup>, Ruibin Li<sup>1</sup>, Liyi Chen<sup>1</sup>, Qiaosi Yi<sup>1,2</sup>, Lei Zhang<sup>1,2</sup>*
 
